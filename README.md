@@ -1,3 +1,3 @@
-# MVI
+# Koin Utils
 
-Simple and concise implementation of Redux/MVI approach by Humans. 
+Simple koin component to share encapsulated modules between application modules. 
