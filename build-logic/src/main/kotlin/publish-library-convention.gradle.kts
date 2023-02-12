@@ -13,8 +13,8 @@ val propsFile = project.rootProject.file("github.properties")
 if (propsFile.isFile()) {
     propsFile.inputStream().use { fis -> githubProperties.load(fis) }
 } else {
-    githubProperties["github_username"] = System.getenv("GITHUB_USERNAME")
-    githubProperties["github_password"] = System.getenv("GITHUB_PASSWORD")
+    githubProperties["github_username"] = System.getenv("USERNAME")
+    githubProperties["github_password"] = System.getenv("PASSWORD")
 }
 
 publishing {
