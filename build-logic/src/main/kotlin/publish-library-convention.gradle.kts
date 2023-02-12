@@ -8,20 +8,26 @@ plugins {
 
 project.version = project.version.toString()
 
-val githubProperties = Properties()
-val propsFile = project.rootProject.file("github.properties")
-if (propsFile.isFile()) {
-    propsFile.inputStream().use { fis -> githubProperties.load(fis) }
-} else {
-    githubProperties["github_username"] = System.getenv("USERNAME")
-    githubProperties["github_password"] = System.getenv("PASSWORD")
+fun readGithubProperties(): Properties {
+    val githubProperties = Properties()
+    project.rootProject.file("github1.properties")
+        ?.takeIf { file -> file.exists() && file.isFile }
+        ?.also { file ->
+            println("take props from properties file")
+            file.inputStream().use { fis -> githubProperties.load(fis) }
+        } ?: {
+            println("take props from env")
+            githubProperties["github_username"] = System.getenv("USERNAME") ?: "-"
+            githubProperties["github_password"] = System.getenv("PASSWORD") ?: "-"
+        }
+    return githubProperties
 }
 
 publishing {
     repositories {
         maven {
             url = uri("https://maven.pkg.github.com/IlyaPavlovskii/koin-v3-utils")
-
+            val githubProperties: Properties = readGithubProperties()
             credentials {
                 username = githubProperties.getProperty("github_username")
                 password = githubProperties.getProperty("github_password")
