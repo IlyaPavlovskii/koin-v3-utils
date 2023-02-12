@@ -19,6 +19,7 @@ fun readGithubProperties(): Properties {
             println("take props from env")
             githubProperties["github_username"] = System.getenv("USERNAME") ?: "-"
             githubProperties["github_password"] = System.getenv("PASSWORD") ?: "-"
+            println("Println: ${githubProperties["github_username"]} Env: ${System.getenv("USERNAME")}")
         }
     return githubProperties
 }
