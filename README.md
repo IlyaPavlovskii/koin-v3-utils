@@ -1,3 +1,3 @@
 # Koin Utils
 
-Simple koin component to share encapsulated modules between application modules. 
+Simple koin component to share encapsulated modules between application modules.
