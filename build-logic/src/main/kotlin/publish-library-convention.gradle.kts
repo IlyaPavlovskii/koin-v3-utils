@@ -10,17 +10,19 @@ project.version = project.version.toString()
 
 fun readGithubProperties(): Properties {
     val githubProperties = Properties()
+    println("readGithubProperties")
     project.rootProject.file("github1.properties")
         ?.takeIf { file -> file.exists() && file.isFile }
         ?.also { file ->
             println("take props from properties file")
             file.inputStream().use { fis -> githubProperties.load(fis) }
-        } ?: {
+        } ?: run {
             println("take props from env")
             githubProperties["github_username"] = System.getenv("USERNAME") ?: "-"
             githubProperties["github_password"] = System.getenv("PASSWORD") ?: "-"
             println("Println: ${githubProperties["github_username"]} Env: ${System.getenv("USERNAME")}")
         }
+    println("githubProperties: ${githubProperties}")
     return githubProperties
 }
 
