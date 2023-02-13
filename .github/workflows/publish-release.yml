@@ -25,6 +25,6 @@ jobs:
 
     - name: Publish to Github
       env:
-        GITHUB_USERNAME: ${{ secrets.USERNAME }}
-        GITHUB_PASSWORD: ${{ secrets.PASSWORD }}
+        GITHUB_USERNAME: ${{ secrets.PACKAGE_REGISTRY_USERNAME }}
+        GITHUB_PASSWORD: ${{ secrets.PACKAGE_REGISTRY_PASSWORD }}
       run: ./gradlew publishAllPublicationsToMavenRepository
